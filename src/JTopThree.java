@@ -1,24 +1,20 @@
-package week9;
-
 import java.util.Scanner;
 
-public class JTop3 {
+public class JTopThree {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String[] tempEmployeeNames = new String[100];
-        int[] tempEmployeeSalaries = new int[100];
+        String[] employeeNames = new String[100];
+        int[] employeeSalaries = new int[100];
         final int TOP_THREE = 3;
-        final int totalEmployees = readEmployeeNamesAndSalariesIntoArrays(sc, tempEmployeeNames, tempEmployeeSalaries);
-        String[] employeeNames = trimStringArray(tempEmployeeNames, totalEmployees);
-        int[] employeeSalaries = trimIntArray(tempEmployeeSalaries, totalEmployees);
+        final int totalEmployees = readEmployeeNamesAndSalariesIntoArrays(sc, employeeNames, employeeSalaries);
         sortEmployeesBySalaryAndName(employeeNames, employeeSalaries, totalEmployees);
-        displayMostWellPaidEmployees(employeeNames, employeeSalaries, TOP_THREE);
+        displayMostWellPaidEmployees(employeeNames, employeeSalaries, TOP_THREE, totalEmployees);
     }
 
     public static int readEmployeeNamesAndSalariesIntoArrays(Scanner sc, String[] employeeNames, int[] employeeSalaries) {
         int totalEmployees = 0;
-        String name = sc.nextLine();
 
+        String name = sc.nextLine();
         while (!name.equals("END") && totalEmployees < employeeNames.length) {
             employeeNames[totalEmployees] = name;
             employeeSalaries[totalEmployees] = Integer.parseInt(sc.nextLine());
@@ -26,22 +22,6 @@ public class JTop3 {
             name = sc.nextLine();
         }
         return totalEmployees;
-    }
-
-    public static String[] trimStringArray(String[] arr, int size) {
-        String[] trimmedArray = new String[size];
-        for (int i = 0; i < size; i++) {
-            trimmedArray[i] = arr[i];
-        }
-        return trimmedArray;
-    }
-
-    public static int[] trimIntArray(int[] arr, int size) {
-        int[] trimmedArray = new int[size];
-        for (int i = 0; i < size; i++) {
-            trimmedArray[i] = arr[i];
-        }
-        return trimmedArray;
     }
 
     public static void sortEmployeesBySalaryAndName(String[] employeeNames, int[] employeeSalaries, int totalEmployees) {
@@ -73,16 +53,15 @@ public class JTop3 {
         }
     }
 
-    public static void displayMostWellPaidEmployees(String[] employeeNames, int[] employeeSalaries, int num) {
-        if (num <= employeeNames.length) {
+    public static void displayMostWellPaidEmployees(String[] employeeNames, int[] employeeSalaries, int num, int num2) {
+        if (num <= num2) {
             for (int i = 0; i < num; i++) {
                 System.out.printf("#%d:%s:%d%n", i + 1, employeeNames[i], employeeSalaries[i]);
             }
         } else {
-            for (int i = 0; i < employeeNames.length; i++) {
+            for (int i = 0; i < num2; i++) {
                 System.out.printf("#%d:%s:%d%n", i + 1, employeeNames[i], employeeSalaries[i]);
             }
         }
     }
 }
-
