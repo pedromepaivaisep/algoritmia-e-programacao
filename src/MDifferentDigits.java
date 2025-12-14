@@ -26,7 +26,7 @@ public class MDifferentDigits {
         int[] differentDigits = new int[arr.length];
 
         for (int i = 0; i < arr.length; i++) {
-            boolean[] seen = new boolean[10]; // marca dígitos 0–9
+            boolean[] seen = new boolean[10];
             int count = 0;
             int number = arr[i];
 
